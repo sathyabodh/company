@@ -70,7 +70,6 @@ public class EmployeeDao implements CrudRepository<Employee, Long> {
 		Join<Employee, Department> deptJoin = root.join(Employee_.department);
 		Join<Department, Organization> orgJoin = deptJoin.join(Department_.organization);
 		Join<Organization, Company> cmpJoin = orgJoin.join(Organization_.company);
-		
 		Predicate empPredicate = cb.equal(root.get(Employee_.name), name);
 		Predicate deptPredicate = cb.equal(deptJoin.get(Department_.name), dept);
 		Predicate orgPredicate = cb.equal(orgJoin.get(Organization_.name), org);
