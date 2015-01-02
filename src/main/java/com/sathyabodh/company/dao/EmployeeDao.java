@@ -65,6 +65,7 @@ public class EmployeeDao implements CrudRepository<Employee, Long> {
 		
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Employee> query = cb.createQuery(Employee.class);
+		
 		Root<Employee> root = query.from(Employee.class);
 		Join<Employee, Department> deptJoin = root.join(Employee_.department);
 		Join<Department, Organization> orgJoin = deptJoin.join(Department_.organization);
