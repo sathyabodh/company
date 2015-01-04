@@ -18,56 +18,56 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@PropertySource("classpath:application.properties")
-@EnableTransactionManagement
+//@PropertySource("classpath:application.properties")
+//@EnableTransactionManagement
 public class JPAConfiguration {
-
-	@Value("${datasource.url}")
-	private String url ;
-	
-	@Value("${datasource.username}")
-	private String username;
-	
-	@Value("${datasource.password}")
-	private String password;
-	
-	@Value("${datasource.driver.name}")
-	private String driver;
-	
-	public DataSource dataSource(){
-		DriverManagerDataSource datasource = new DriverManagerDataSource();
-		datasource.setUrl(url);
-		datasource.setDriverClassName(driver);
-		datasource.setUsername(username);
-		datasource.setPassword(password);
-		return datasource;
-	}
-	
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityMangerFactory(){
-		LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
-		bean.setDataSource(dataSource());
-		bean.setPersistenceUnitName("company-persistence");
-		bean.setPackagesToScan("com.sathyabodh.company.domain");
-		bean.setJpaVendorAdapter(jpaVendorAdapter());
-		return bean ;
-	}
-	
-	@Bean
-	public JpaVendorAdapter jpaVendorAdapter(){
-		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-		adapter.setDatabase(Database.H2);
-		adapter.setShowSql(true);
-		return adapter;
-	}
-	
-	@Bean
-	public PlatformTransactionManager transactionManager(){
-		JpaTransactionManager manager = new JpaTransactionManager(entityMangerFactory().getObject());
-		return manager;
-	}
-	
-	public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer(){
-		return new PropertyPlaceholderConfigurer();
-	}
+//
+//	@Value("${datasource.url}")
+//	private String url ;
+//	
+//	@Value("${datasource.username}")
+//	private String username;
+//	
+//	@Value("${datasource.password}")
+//	private String password;
+//	
+//	@Value("${datasource.driver.name}")
+//	private String driver;
+//	
+//	public DataSource dataSource(){
+//		DriverManagerDataSource datasource = new DriverManagerDataSource();
+//		datasource.setUrl(url);
+//		datasource.setDriverClassName(driver);
+//		datasource.setUsername(username);
+//		datasource.setPassword(password);
+//		return datasource;
+//	}
+//	
+//	@Bean
+//	public LocalContainerEntityManagerFactoryBean entityMangerFactory(){
+//		LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
+//		bean.setDataSource(dataSource());
+//		bean.setPersistenceUnitName("company-persistence");
+//		bean.setPackagesToScan("com.sathyabodh.company.domain");
+//		bean.setJpaVendorAdapter(jpaVendorAdapter());
+//		return bean ;
+//	}
+//	
+//	@Bean
+//	public JpaVendorAdapter jpaVendorAdapter(){
+//		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+//		adapter.setDatabase(Database.H2);
+//		adapter.setShowSql(true);
+//		return adapter;
+//	}
+//	
+//	@Bean
+//	public PlatformTransactionManager transactionManager(){
+//		JpaTransactionManager manager = new JpaTransactionManager(entityMangerFactory().getObject());
+//		return manager;
+//	}
+//	
+//	public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer(){
+//		return new PropertyPlaceholderConfigurer();
+//	}
 }
